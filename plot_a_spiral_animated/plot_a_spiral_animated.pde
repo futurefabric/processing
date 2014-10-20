@@ -1,14 +1,14 @@
-// GROWING / SHRINKING SPIRAL (DYNAMIC POINTS/ROTATION)
+// PLOT POINTS IN A SPIRAL
 // By Guy Moorhouse @Futurefabric
 
 float x, y;
-int number_of_points = 1;
-boolean grow = true;
+int number_of_points = 1000;
 float circle_diameter = 5;
 float plot_radius = 200;
-float angle_incr = radians(0);
+float angle_incr = radians(25);
 
 void setup() {
+  frameRate(100);
   size(500,500);
   fill(0);
   smooth(8);
@@ -18,21 +18,7 @@ void setup() {
 void draw() {
   background(255); 
   translate(width/2, height/2);
-  
-  rotate(radians(number_of_points));
-  angle_incr = radians(25);
-  
-  if(number_of_points > 1000) { grow = false; }
-  if(number_of_points == 0) { grow=true; }
-  
-  if(grow == true) {
-    number_of_points++; 
-  }else{
-    number_of_points--;
-  }
-  
-  //println(number_of_points);
-  println(radians(number_of_points));
+  //angle_incr = radians((.005 * frameCount));
   
   for(int i=0; i<number_of_points; i++){  
     
@@ -41,7 +27,8 @@ void draw() {
     float angle = i*angle_incr;
     x = cos(angle) * spiral_rad;
     y = sin(angle) * spiral_rad;
-        
+    
+    rotate(radians(-.0005 * frameCount));
     ellipse(x,y,circle_diameter,circle_diameter);
   }
 }
