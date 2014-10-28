@@ -25,6 +25,7 @@ void setup() {
 }
 
 void draw() {
+  pushMatrix();
   t = mouseX*1.0/width;
   background(255); 
   fill(0);
@@ -32,4 +33,5 @@ void draw() {
   x = (width + 50)*ease(x,2.5);
   translate(x,0);
   ellipse(-25,(height/2),50,50);
+  popMatrix();
 }
